@@ -18,7 +18,9 @@ print(count2, "boxIds where a character occurs exactly twice,", count3, "boxIds 
 print("part1 time: %s seconds" % (time.time() - startTime))
 
 #part2
-
+# reset the clock
+startTime = time.time()
+# test all possible combinations of boxIds, 2 at a time
 for x, y in combinations(inputs, 2):
     # returns true/false as a single-character comparison between boxIds zipped x/y
     delta = [a == b for a,b in zip(x,y)]
@@ -31,5 +33,3 @@ for x, y in combinations(inputs, 2):
         break
 print(result)
 print("part2 time: %s seconds" % (time.time() - startTime))
-
-
