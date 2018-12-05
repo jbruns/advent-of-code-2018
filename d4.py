@@ -40,11 +40,16 @@ for event in inputs:
             # add individual minute frequency to tracker by keys = guardId and clock minute 
             guardSleepTracker[guardId][m] += 1
 
-# part 1
+# part 1, guard id that has the most minutes asleep: sum all of the minutes per guard, sort, and return only the top result
 r1 = sorted(guardSleepTracker.keys(), key=lambda g:-sum(guardSleepTracker[g]))[0]
-# part 2
+# part 2, guard id that is most frequently asleep at the same minute: get the max of minute occurrences per guard, sort, and return only the top result
 r2 = sorted(guardSleepTracker.keys(), key=lambda g:-max(guardSleepTracker[g]))[0]
 
+# we have our guard ids, so now we need:
+# -for the guard that spends the most time asleep, what minute do they specifically spend asleep the most
+# -for the guardid that has the most frequent occurrences of the same minute, find the minute that occurs most often
+# these are both max(), so we can use the same strategy for both cases:
+# loop over the sleepTracker for the two guard ids we care about (r1 and r2). grab their minutes and counter. return max().
 for g in [r1,r2]:
     gh = guardSleepTracker[g]
     minute = gh.index(max(gh))
